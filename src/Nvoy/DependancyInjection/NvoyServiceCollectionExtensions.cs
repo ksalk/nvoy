@@ -1,14 +1,18 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Nvoy.Clients;
 
-namespace Nvoy.DependancyInjection;
+namespace Nvoy;
 
-public static class ServiceCollectionExtensions
+public static class NvoyServiceCollectionExtensions
 {
     public static IServiceCollection AddNvoy(this IServiceCollection services, IConfiguration configuration)
     {
         // Register OpenAI options from configuration
-        services.Configure<OpenAIOptions>(configuration.GetSection(OpenAIOptions.SectionName));
+        services.Configure<NvoyOpenAIOptions>(configuration.GetSection(NvoyOpenAIOptions.SectionName));
+
+        // Register the NvoyClient
+        services.AddScoped<INvoyClient, NvoyClient>();
 
         return services;
     }
