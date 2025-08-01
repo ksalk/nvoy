@@ -11,8 +11,8 @@ public static class NvoyServiceCollectionExtensions
         // Register OpenAI options from configuration
         services.Configure<NvoyOpenAIOptions>(configuration.GetSection(NvoyOpenAIOptions.SectionName));
 
-        // Register the NvoyClient
-        services.AddScoped<INvoyClient, NvoyClient>();
+        // Register the NvoyChatClient
+        services.AddScoped<INvoyChatClient, NvoyOpenAIChatClient>();
 
         return services;
     }

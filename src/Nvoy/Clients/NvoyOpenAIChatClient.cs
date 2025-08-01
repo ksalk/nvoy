@@ -4,15 +4,15 @@ using OpenAI.Chat;
 
 namespace Nvoy.Clients;
 
-public class NvoyClient : INvoyClient
+internal class NvoyOpenAIChatClient : INvoyChatClient
 {
     private readonly NvoyOpenAIOptions _options;
     private readonly OpenAIClient _openAIClient;
 
-    public NvoyClient(IOptions<NvoyOpenAIOptions> options)
+    public NvoyOpenAIChatClient(IOptions<NvoyOpenAIOptions> options)
     {
         _options = options.Value;
-        
+
         // Create OpenAI client
         _openAIClient = new OpenAIClient(new System.ClientModel.ApiKeyCredential(_options.ApiKey), new OpenAIClientOptions { Endpoint = new Uri(_options.ApiUrl!) });
     }
